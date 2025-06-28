@@ -11,39 +11,44 @@ import java.util.ArrayList;
  * @author USer
  */
 public class HabitosDiarios {
-    ArrayList<Habito> habitosHj = new ArrayList<>();
-    ArrayList<Habito> feitosHj = new ArrayList<>();
+    private ArrayList<Habito> habitosHj = new ArrayList<>();
+    private ArrayList<Habito> feitosHj = new ArrayList<>();
     
     
     public void adicionarHabito(Habito h){
         if(habitosHj!=null){
-            for(Habito hab : habitosHj){
-                if(!hab.equals(h)){
-                    habitosHj.add(h);
-                } else{
-                    System.out.println("Este hábito já foi adicionado");
-                }
+            if(!habitosHj.contains(h)){
+                habitosHj.add(h);
+            } else{
+                System.out.println("Este hábito já foi adicionado");
             }
         } else {
             habitosHj.add(h);
         }
     }
     
-    public void desMarcar(Habito h){
-        for(Habito hab : habitosHj){
-                if(!hab.equals(h)){
-                    habitosHj.add(h); // se não tiver na lista, adiciona (marcado)
-                } else{
-                    habitosHj.remove(h); // se já tiver na lista, remove (desmarcado)
-                }
-            }
+    public void alterarStatus(Habito h){
+        if(habitosHj.contains(h) && feitosHj.contains(h)){
+            h.setStatusHj(Boolean.FALSE);
+            feitosHj.remove(h); // se já tiver na lista, remove (desmarcar)
+        } else if(habitosHj.contains(h) && !feitosHj.contains(h)){
+            h.setStatusHj(Boolean.TRUE);
+            feitosHj.add(h); // se não tiver na lista, adiciona (marcado)
     }
-
-    public HabitosDiarios() {
-    }
-
+}
     public ArrayList<Habito> getHabitosHj() {
-        return habitosHj;
+        return this.habitosHj;
     }
-    
+
+    public void setHabitosHj(ArrayList<Habito> habitosHj) {
+        this.habitosHj = habitosHj;
+    }
+
+    public ArrayList<Habito> getFeitosHj() {
+        return this.feitosHj;
+    }
+
+    public void setFeitosHj(ArrayList<Habito> feitosHj) {
+        this.feitosHj = feitosHj;
+    }
 }
