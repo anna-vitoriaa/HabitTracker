@@ -4,17 +4,46 @@
  */
 package habittracker;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author USer
  */
 public class HabitosDiarios {
-    ArrayList a
-    public void adicionarHabito(){
-        
+    ArrayList<Habito> habitosHj = new ArrayList<>();
+    ArrayList<Habito> feitosHj = new ArrayList<>();
+    
+    
+    public void adicionarHabito(Habito h){
+        if(habitosHj!=null){
+            for(Habito hab : habitosHj){
+                if(!hab.equals(h)){
+                    habitosHj.add(h);
+                } else{
+                    System.out.println("Este hábito já foi adicionado");
+                }
+            }
+        } else {
+            habitosHj.add(h);
+        }
     }
     
-    public void marcarComoFeito(Habito h){
-        
+    public void desMarcar(Habito h){
+        for(Habito hab : habitosHj){
+                if(!hab.equals(h)){
+                    habitosHj.add(h); // se não tiver na lista, adiciona (marcado)
+                } else{
+                    habitosHj.remove(h); // se já tiver na lista, remove (desmarcado)
+                }
+            }
     }
+
+    public HabitosDiarios() {
+    }
+
+    public ArrayList<Habito> getHabitosHj() {
+        return habitosHj;
+    }
+    
 }
